@@ -25,6 +25,9 @@ namespace BookService.Controllers
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            Price = b.Price,
+                            Year = b.Year,
+                            Genre = b.Genre,
                             AuthorName = b.Author.Name
                         };
 
