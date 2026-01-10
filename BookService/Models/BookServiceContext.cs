@@ -15,7 +15,7 @@ namespace BookService.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public BookServiceContext() : base("name=BookStoreConnection")
+        public BookServiceContext() : base("name=BookServiceContext")
         {
             this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }

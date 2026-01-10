@@ -3,7 +3,11 @@
     self.books = ko.observableArray();
     self.error = ko.observable();
     self.detail = ko.observable();
-    self.authors = ko.observableArray();
+    self.authors = ko.observableArray()
+    self.edit = ko.observable();
+    self.selectedValue = ko.observable();
+    self.deleteBook = ko.observable();
+    self.delete= ko.observable();
     self.newBook = {
         Author: ko.observable(),
         Genre: ko.observable(),
@@ -46,7 +50,6 @@
         });
     }
 
-
     self.addBook = function (formElement) {
         var book = {
             AuthorId: self.newBook.Author().Id,
@@ -60,7 +63,43 @@
             self.books.push(item);
         });
     }
+    self.editBook = function (book) {
+        var book = {
+            AuthorId: self.editBook.AuthorId,
+            Genre: self.editBook.Genre,
+            Price: self.editBook.Price,
+            Title: self.editBook.Title,
+            Year: self.editBook.Year
+        };
 
+        ajaxHelper(booksUri, 'PUT', book).done(function (item) {
+            self.books.push(item);
+        });
+    }
+    self.getEditBook = function (book) {  
+        
+        ajaxHelper(booksUri + book.Id, 'GET').done(function (data) {          
+            self.edit(data)
+            self.selectedValue(data.AuthorId);
+        });
+    };
+   
+    self.getDeleteBook = function (book) {
+        if (window.confirm("Are you sure you want to delete this book?")) {
+            ajaxHelper(booksUri, 'DELETE', book.Id).done(function (data) {
+                self.items.remove(data);
+            });
+        }
+    };
+
+    self.deleteBook = function (book) {
+        $.ajax({
+            url: "api/books/" + book.Id,
+            type: "DELETE",
+            success: self.books
+        });
+    };
+    
     // Fetch the initial data.
     getAllBooks();
     getAuthors();

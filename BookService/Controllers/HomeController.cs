@@ -14,5 +14,30 @@ namespace BookService.Controllers
 
             return View();
         }
+        public ActionResult Add()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
+        }
+        public ActionResult Edit()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
+        }
+
+        public ActionResult Detail()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
+        }
+        public ActionResult Delete()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
+        }
     }
 }
