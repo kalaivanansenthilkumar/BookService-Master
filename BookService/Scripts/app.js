@@ -60,7 +60,14 @@
             self.books.push(item);
         });
     }
+    //Delete Customer  
+    self.deleteBook = function (book) {
+        ajaxHelper(booksUri + book.Id, 'DELETE').done(function () {
+            alert('Book Deleted Successfully');
+            getAllBooks();
+        })
 
+    }
     // Fetch the initial data.
     getAllBooks();
     getAuthors();
