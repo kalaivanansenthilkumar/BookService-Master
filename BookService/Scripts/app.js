@@ -59,20 +59,13 @@
             Year: self.newBook.Year()
         };
 
-        ajaxHelper(booksUri, 'POST', book).done(function (item) {
+        ajaxHelper(booksUri, 'POST', book.Id, book).done(function (item) {
             self.books.push(item);
         });
     }
-    self.editBook = function (book) {
-        var book = {
-            AuthorId: self.editBook.AuthorId,
-            Genre: self.editBook.Genre,
-            Price: self.editBook.Price,
-            Title: self.editBook.Title,
-            Year: self.editBook.Year
-        };
-
-        ajaxHelper(booksUri, 'PUT', book).done(function (item) {
+    self.editBook = function (data) {
+       
+        ajaxHelper(booksUri, 'PUT', data.Id, data).done(function (item) {
             self.books.push(item);
         });
     }
@@ -91,7 +84,14 @@
             });
         }
     };
-
+    self.updateBook = function (data) {
+        $.ajax({
+            url: "api/books/" + data.Id,
+            data: data,
+            type: "PUT",
+            success: self.books
+        });
+    };
     self.deleteBook = function (book) {
         $.ajax({
             url: "api/books/" + book.Id,
