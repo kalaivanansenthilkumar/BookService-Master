@@ -14,7 +14,7 @@ namespace BookService.Controllers
 
             return View();
         }
-        public ActionResult Add()
+        public ActionResult Customers()
         {
             ViewBag.Title = "Home Page";
 
