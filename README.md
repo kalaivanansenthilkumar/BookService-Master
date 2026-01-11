@@ -6,7 +6,7 @@ Sample application for the tutorial [Using Web API 2 with Entity Framework 6](ht
 Requirements:
 
 - Visual Studio
-- SQL Server 2012 Express LocalDB (to run locally)
+- SQL Server 2016
 
 To run the sample locally from Visual Studio:
 
