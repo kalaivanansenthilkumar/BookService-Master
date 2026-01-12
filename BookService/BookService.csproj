@@ -234,9 +234,10 @@
     <None Include="Properties\PublishProfiles\BookService.pubxml" />
     <None Include="Properties\PublishProfiles\bookservice2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\author.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\customerApp.js" />
+    <Content Include="Scripts\customer.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
@@ -272,6 +273,7 @@
     <Content Include="Views\Home\Customers.cshtml" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <Content Include="Views\Home\Authors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -20,6 +20,12 @@ namespace BookService.Controllers
 
             return View();
         }
+        public ActionResult Authors()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
+        }
         public ActionResult Edit()
         {
             ViewBag.Title = "Home Page";

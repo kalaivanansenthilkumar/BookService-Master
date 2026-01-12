@@ -11,7 +11,9 @@
     self.Price = ko.observable();
     self.selectedAuthorId = ko.observable();
     self.selectedBookId = ko.observable();
-    
+    self.Id = ko.observable();
+    self.Name = ko.observable();
+    self.authorDetail = ko.observable();
 
     var booksUri = '/api/books/';
     var authorsUri = '/api/authors/';
@@ -107,6 +109,61 @@
         })
 
     }
+    self.getAuthorDetail = function (item) {
+        ajaxHelper(authorsUri + item.Id, 'GET').done(function (data) {
+            self.authorDetail(data);
+        });
+    }
+
+    self.addAuthor = function (formElement) {
+        var newAuthor = {
+            Name: self.Name(),
+
+        };
+
+        ajaxHelper(authorsUri, 'POST', newAuthor).done(function (item) {
+            self.clearFields();
+            alert('Author Added Successfully');
+            self.authors.push(item);
+        });
+    }
+
+    self.getUpdateAuthor = function (author) {
+        self.selectedAuthorId(author.Id);
+        ajaxHelper(authorsUri + author.Id, 'GET').done(function (data) {
+            self.selectedAuthorId(data.Id);
+            self.Name(data.Name);
+
+            $('#Save').hide();
+            $('#Clear').hide();
+
+            $('#Update').show();
+            $('#Cancel').show();
+        });
+    }
+    //Update Book  
+    self.updateAuthor = function () {
+
+        var updateAuthor = {
+            Id: self.selectedAuthorId(),
+            Name: self.Name(),
+
+        };
+
+        ajaxHelper(authorsUri + self.selectedAuthorId(), 'PUT', updateAuthor).done(function () {
+            alert('Author Updated Successfully !');
+            getAuthors();
+            self.cancel();
+        });
+    }
+    //Delete Book  
+    self.deleteAuthor = function (book) {
+        ajaxHelper(booksUri + book.Id, 'DELETE').done(function () {
+            alert('Author Deleted Successfully');
+            getAuthors();
+        })
+
+    }
     // Clear Fields  
     self.clearFields = function clearFields() {
         self.selectedAuthorId('');
@@ -114,6 +171,7 @@
         self.Genre('');
         self.Year('');
         self.Price('');
+        self.Name('');;
     }
 
     self.cancel = function () {
